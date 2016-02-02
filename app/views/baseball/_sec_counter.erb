@@ -1,0 +1,10 @@
+<!-- 시간 표시하는 js (건들지 마시오) -->
+<script>
+$(document).ready(function(){
+  var curr_sec = 0
+  setInterval(function(){ 
+    curr_sec++
+    $('#sec_counter').text(curr_sec)
+  }, 1000);
+});
+</script>
