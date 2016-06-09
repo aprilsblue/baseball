@@ -1,7 +1,38 @@
 <h1>Ajax + 숫자야구</h1>
 
 <!-- ajax를 이용하여 하단의 시간이 초기화되지 않아야함-->
-<span id="sec_counter">0</span>초 지났습니다
+<span id="sec_counter">0</span>초 지났습니다<br><br>
 <!------------------------------------------------------>
 
-<p>Start Coding</p>
+<button id="start" style="margin-bottom:10px;">START</button>
+
+<div>
+  <div id="check_div"></div>
+  <h1 id="number"></h1>
+  <div id="note"></div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("#start").click(function() {
+      $.ajax({
+        method: "POST",
+        url: "/baseball/gamestart",
+        success: function() {
+          $("#number").text("????");
+          $("#start").attr("disabled", "disabled");
+          $("#check_div").append("<input id='test' name='test' type='text'/>");
+          $("#check_div").append("<button id='check'>CHECK</button>");
+        },
+        error: function() {
+          alert("Failed");
+        }
+      });
+    });
+    
+    $(document).on("click", "#check", function() {
+      var check_num = $("#test").val();
+      check_ajax_call(check_num); // application.js 참조
+    });
+  });     // end document ready
+</script>
